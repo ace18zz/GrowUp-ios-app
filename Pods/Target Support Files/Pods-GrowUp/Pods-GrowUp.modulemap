@@ -1,0 +1,6 @@
+framework module Pods_GrowUp {
+  umbrella header "Pods-GrowUp-umbrella.h"
+
+  export *
+  module * { export * }
+}
