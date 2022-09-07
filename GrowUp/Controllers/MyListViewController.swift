@@ -46,7 +46,12 @@ class MyListViewController: UITableViewController {
                            newItem.point = point
                            newItem.sender = messender
                            
-                           self.itemArray.append(newItem)
+                           if Auth.auth().currentUser?.email == messender {
+                               self.itemArray.append(newItem)
+                           }else{
+                               print("no item")
+                           }
+                           
                            
                            DispatchQueue.main.async {
                                self.tableView.reloadData()
