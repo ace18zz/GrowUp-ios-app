@@ -85,21 +85,22 @@ class MyListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let items = itemArray[indexPath.row]
-
+        let listSender = Auth.auth().currentUser?.email
+        
         if items.done == false {
             items.done = true
         }else {
             items.done = false
         }
-//        self.db.collection(FStore.collectionName).addDocument(data: [FStore.doneField:items.done]){(error) in
-//            if error != nil {
-//                print("saving error")
-//
-//            }else{
-//                print("done")
-//            }
-//
-//        }
+        self.db.collection(FStore.collectionName2).addDocument(data: [FStore.senderField:listSender,FStore.bodyField:items.title,FStore.dateField:items.point,FStore.doneField:items.done]){(error) in
+            if error != nil {
+                print("saving error")
+
+            }else{
+                print("save done")
+            }
+
+        }
     
         tableView.reloadData()
         

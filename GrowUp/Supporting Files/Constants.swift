@@ -22,6 +22,7 @@ struct BrandColors {
     
 struct FStore {
     static let collectionName = "list"
+    static let collectionName2 = "doneList"
     static let senderField = "sender"
     static let bodyField = "body"
     static let dateField = "point"
