@@ -17,8 +17,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Grow Up" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F2A-tu-M7Z">
-                                <rect key="frame" x="-11" y="128" width="413.99999999999983" height="112.99999999999994"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                                <rect key="frame" x="-11" y="128" width="414" height="113"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="textColor" name="Color4"/>
                                 <fontDescription key="fontDescription" name="Rockwell-Bold" family="Rockwell" pointSize="58"/>
                                 <textInputTraits key="textInputTraits"/>
