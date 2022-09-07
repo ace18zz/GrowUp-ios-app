@@ -25,6 +25,7 @@ struct FStore {
     static let senderField = "sender"
     static let bodyField = "body"
     static let dateField = "point"
+    static let doneField = "done"
     
 }
 

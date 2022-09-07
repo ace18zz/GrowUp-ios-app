@@ -21,10 +21,7 @@ class MyListViewController: UITableViewController {
         super.viewDidLoad()
         title = K.appName
         
-        let newItem = Item()
-        newItem.title = " Buy Milk"
-        itemArray.append(newItem)
-        
+
         loadMessages()
         
 
@@ -38,7 +35,26 @@ class MyListViewController: UITableViewController {
             if let e = error {
                 print ("error shows \(e)")
             }else {
-                
+                if let snapDoc = querySnapshot?.documents {
+                    for doc in snapDoc {
+                        let data = doc.data()
+                       if let messender = data[FStore.senderField] as? String,
+                          let point = data [FStore.dateField] as? Int, let messagebody = data[FStore.bodyField] as? String {
+                           
+                           let newItem = Item()
+                           newItem.title = messagebody
+                           newItem.point = point
+                           newItem.sender = messender
+                           
+                           self.itemArray.append(newItem)
+                           
+                           DispatchQueue.main.async {
+                               self.tableView.reloadData()
+                           }
+                        
+                       }
+                    }
+                }
             }
         }
     }
@@ -70,7 +86,16 @@ class MyListViewController: UITableViewController {
         }else {
             items.done = false
         }
-        
+//        self.db.collection(FStore.collectionName).addDocument(data: [FStore.doneField:items.done]){(error) in
+//            if error != nil {
+//                print("saving error")
+//
+//            }else{
+//                print("done")
+//            }
+//
+//        }
+    
         tableView.reloadData()
         
         tableView.deselectRow(at: indexPath, animated: true)
@@ -96,13 +121,13 @@ class MyListViewController: UITableViewController {
             self.itemArray.append(newItem)
 
             self.db.collection(FStore.collectionName).addDocument(data: [FStore.senderField:listSender,FStore.bodyField:textField.text,FStore.dateField:point]){(error) in
-                if let e = error {
+                if error != nil {
                     print("saving error")
-                    
+
                 }else{
                     print("svaed")
                 }
-                
+
             }
             self.tableView.reloadData()
             

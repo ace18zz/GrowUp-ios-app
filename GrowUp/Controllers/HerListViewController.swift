@@ -13,32 +13,136 @@ import FirebaseAuth
 
 class HerListViewController: UIViewController {
    
-    @IBOutlet var ListTableView: UITableView!
+    @IBOutlet weak var tableView: UITableView!
+
     
-    let itemArray = ["11","22","33"]
+    var itemArray = [Item]()
+    
+    let db = Firestore.firestore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        ListTableView.dataSource = (self)
         title = K.appName
-  
-    }
-}
+        
+        tableView.dataSource = self
 
-extension HerListViewController : UITableViewDataSource {
+        loadMessages()
+        
+
+    }
+    func loadMessages(){
+        itemArray = []
+        
+        
+        db.collection(FStore.collectionName).getDocuments {(querySnapshot, error ) in
+            if let e = error {
+                print ("error shows \(e)")
+            }else {
+                
+                if let snapDoc = querySnapshot?.documents {
+                    for doc in snapDoc {
+                        let data = doc.data()
+                       if let messender = data[FStore.senderField] as? String,
+                          let point = data [FStore.dateField] as? Int, let messagebody = data[FStore.bodyField] as? String {
+                           
+                           let newItem = Item()
+                           newItem.title = messagebody
+                           newItem.point = point
+                           newItem.sender = messender
+                           if Auth.auth().currentUser?.email != messender {
+                               self.itemArray.append(newItem)
+                           }else{
+                               print("no item")
+                           }
+                           
+//                           print(self.itemArray[0].title)
+                           
+                           DispatchQueue.main.async {
+                               self.tableView.reloadData()
+                           }
+                        
+                       }
+                    }
+                }
+            }
+        }
+    }
+//    @objc func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//           return itemArray.count
+//       }
+//
+//       // Provide a cell object for each row.
+//    @objc(tableView:cellForRowAtIndexPath:) func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//          // Fetch a cell of the appropriate type.
+//           let item = itemArray[indexPath.row]
+//           let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath)
+//
+//           cell.textLabel?.text = item.title + "          " + String(item.point) + "  Points"
+//
+//           // check the item is done or not
+//           //cell.accessoryType = item.done ? .checkmark : .none
+//
+//           return cell
+//
+//
+//       }
+    }
+
+
+extension HerListViewController: UITableViewDataSource {
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      
         return itemArray.count
     }
-    
+
+    // Provide a cell object for each row.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-     
+       // Fetch a cell of the appropriate type.
+        let item = itemArray[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath)
-        cell.textLabel?.text = "this is a cell"
-        
+
+        cell.textLabel?.text = item.title + "          " + String(item.point) + "  Points"
+
+        // check the item is done or not
+        //cell.accessoryType = item.done ? .checkmark : .none
+
         return cell
+
+
     }
+
+
     
     
+    
+//    func ListView(_ ListTableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let item = itemArray[indexPath.row]
+//        let cell = ListTableView.dequeueReusableCell(withIdentifier: "ReusableCell", for: indexPath)
+//
+//        cell.textLabel?.text = item.title + "          " + String(item.point) + "  Points"
+//
+//        // check the item is done or not
+//        cell.accessoryType = item.done ? .checkmark : .none
+//
+//    return cell
+//    }
+
+    
+
+//extension HerListViewController : UITableViewDataSource {
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//
+//        return itemArray.count
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//
+//        let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath)
+//        cell.textLabel?.text = "this is a cell"
+//
+//        return cell
+//    }
+//
+//
+//}
 }

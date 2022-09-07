@@ -9,7 +9,7 @@ import Foundation
 
 class Item {
     
-    let sender: String = ""
+    var sender: String = ""
     
     var title : String = ""
     var point : Int = 0
