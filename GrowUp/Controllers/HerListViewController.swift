@@ -67,25 +67,7 @@ class HerListViewController: UIViewController {
             }
         }
     }
-//    @objc func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//           return itemArray.count
-//       }
-//
-//       // Provide a cell object for each row.
-//    @objc(tableView:cellForRowAtIndexPath:) func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//          // Fetch a cell of the appropriate type.
-//           let item = itemArray[indexPath.row]
-//           let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath)
-//
-//           cell.textLabel?.text = item.title + "          " + String(item.point) + "  Points"
-//
-//           // check the item is done or not
-//           //cell.accessoryType = item.done ? .checkmark : .none
-//
-//           return cell
-//
-//
-//       }
+
     }
 
 
@@ -112,37 +94,5 @@ extension HerListViewController: UITableViewDataSource {
     }
 
 
-    
-    
-    
-//    func ListView(_ ListTableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let item = itemArray[indexPath.row]
-//        let cell = ListTableView.dequeueReusableCell(withIdentifier: "ReusableCell", for: indexPath)
-//
-//        cell.textLabel?.text = item.title + "          " + String(item.point) + "  Points"
-//
-//        // check the item is done or not
-//        cell.accessoryType = item.done ? .checkmark : .none
-//
-//    return cell
-//    }
 
-    
-
-//extension HerListViewController : UITableViewDataSource {
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//
-//        return itemArray.count
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//
-//        let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath)
-//        cell.textLabel?.text = "this is a cell"
-//
-//        return cell
-//    }
-//
-//
-//}
 }

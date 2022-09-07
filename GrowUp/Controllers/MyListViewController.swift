@@ -31,7 +31,7 @@ class MyListViewController: UITableViewController {
         itemArray = []
         
         
-        db.collection(FStore.collectionName).getDocuments {(querySnapshot, error ) in
+        db.collection(FStore.collectionName2).getDocuments {(querySnapshot, error ) in
             if let e = error {
                 print ("error shows \(e)")
             }else {
@@ -39,12 +39,13 @@ class MyListViewController: UITableViewController {
                     for doc in snapDoc {
                         let data = doc.data()
                        if let messender = data[FStore.senderField] as? String,
-                          let point = data [FStore.dateField] as? Int, let messagebody = data[FStore.bodyField] as? String {
+                          let point = data [FStore.dateField] as? Int, let messagebody = data[FStore.bodyField] as? String, let donemesg = data[FStore.doneField] as? Bool{
                            
                            let newItem = Item()
                            newItem.title = messagebody
                            newItem.point = point
                            newItem.sender = messender
+                           newItem.done = donemesg
                            
                            if Auth.auth().currentUser?.email == messender {
                                self.itemArray.append(newItem)
