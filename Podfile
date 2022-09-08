@@ -6,7 +6,7 @@ target 'GrowUp' do
 
   # Pods for GrowUp
   
-  
+  pod 'SwipeCellKit'
 
   target 'GrowUpTests' do
     inherit! :search_paths

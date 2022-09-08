@@ -9,6 +9,8 @@ import UIKit
 import FirebaseCore
 import FirebaseFirestore
 import FirebaseAuth
+import SwipeCellKit
+
 
 
 class MyListViewController: UITableViewController {
@@ -23,6 +25,7 @@ class MyListViewController: UITableViewController {
         
 
         loadMessages()
+        tableView.rowHeight = 70.0
         
 
     }
@@ -72,10 +75,10 @@ class MyListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let item = itemArray[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MyListCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MyListCell", for: indexPath) as! SwipeTableViewCell
         
         cell.textLabel?.text = item.title + "          " + String(item.point) + "  Points"
-        
+        cell.delegate = self
         // check the item is done or not
         cell.accessoryType = item.done ? .checkmark : .none
 
@@ -155,5 +158,37 @@ class MyListViewController: UITableViewController {
     
     
     
+    
+}
+
+// Swipe cell delegate Methods
+extension MyListViewController: SwipeTableViewCellDelegate{
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        
+        
+        guard orientation == .right else { return nil }
+
+        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
+            // handle action by updating model with deletion
+//            let items = self.itemArray[indexPath.row]
+//            self.db.collection(FStore.collectionName).document().delete() { err in
+//                if let err = err {
+//                    print("Error removing document: \(err)")
+//                } else {
+//                    print("Document successfully removed!")
+//                }
+            
+             self.itemArray.remove(at: indexPath.row)
+            
+                tableView.reloadData()
+            
+        
+        }
+
+        // customize the action appearance
+        deleteAction.image = UIImage(named: "delete-icon")
+
+        return [deleteAction]
+    }
     
 }

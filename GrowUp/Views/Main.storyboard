@@ -688,11 +688,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" name="Color2"/>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" name="Color3"/>
+                                        <color key="tintColor" name="Color1"/>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="Screenshot 2022-09-07 at 11.58.32" translatesAutoresizingMaskIntoConstraints="NO" id="gb5-U9-D7y">
-                                <rect key="frame" x="80" y="44" width="230" height="126"/>
+                                <rect key="frame" x="98" y="64" width="195" height="98"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
@@ -706,7 +708,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BV5-q7-aSz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5363" y="-1073"/>
+            <point key="canvasLocation" x="5361.538461538461" y="-1073.4597156398104"/>
         </scene>
         <!--Item-->
         <scene sceneID="ons-ZY-dLj">
@@ -717,14 +719,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" name="Color1"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyListCell" id="R03-vD-eUD">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="MyListCell" id="R03-vD-eUD" customClass="SwipeTableViewCell" customModule="SwipeCellKit">
                                 <rect key="frame" x="0.0" y="44.666666030883789" width="390" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="R03-vD-eUD" id="Tfn-KM-eAA">
-                                    <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="349.33333333333331" height="43.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="backgroundColor" name="Color2"/>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" name="Color3"/>
+                                <color key="tintColor" name="Color1"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
